@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Automatically download and install mods on your ARK server
-# Written by Eric Mathison - https://ericmathison.com
-
 # Store ARK mod IDs space delimited
 mods=( 630601751 693416678 708807240 731604991 793605978 895711211 924933745 )
 
@@ -25,3 +22,10 @@ done
 mv $arkdir/steamapps/workshop/content/346110/* $arkdir/ShooterGame/Content/Mods/
 
 rm -rf $arkdir/steamapps/workshop/content/346110
+
+# Decompress ARK zlib files
+for file in $(find "$arkdir/ShooterGame/Content/Mods" -type f -name '*.z')
+do
+        python /home/ark/z_unpack.py $file "${file%.*}"
+        rm -rf $file $file.uncompressed_size
+done
