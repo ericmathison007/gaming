@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ARK: Survival Evolved Mod Updater
+# Written by: Eric Mathison
+# https://github.com/ericmathison007/gaming/edit/master/tools/ark/ark-updatemods.sh
+
 # Store ARK mod IDs space delimited
 mods=( 630601751 693416678 708807240 731604991 793605978 895711211 924933745 )
 
