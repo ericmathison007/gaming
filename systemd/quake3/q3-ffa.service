@@ -1,0 +1,17 @@
+[Unit]
+Description=Quake 3 FFA Server
+After=network.target
+
+[Service]
+User=q3
+WorkingDirectory=/srv/Q3A/
+ExecStart=/usr/bin/screen -m -d -S q3-FFA /srv/Q3A/ioQ3ded_FFA.x64 +set net_port 27960 +set dedicated 2 +set com_hunkMegs 160 +set fs_homepath /srv/Q3A/Logs +exec Server.cfg +exec FFA.cfg
+ExecStop=/usr/bin/screen -S q3-FFA -X quit
+ExecReload=/usr/bin/screen -S q3-FFA -X quit && /usr/bin/screen -m -d -S q3-FFA /srv/Q3A/ioQ3ded_FFA.x64 +set net_port 27960 +set dedicated 2 +set com_hunkMegs 160 +set fs_homepath /srv/Q3A/Logs +exec Server.cfg +exec FFA.cfg
+KillMode=none
+RemainAfterExit=yes
+Restart=on-failure
+Environment=SYSTEMD_LOG_LEVEL=debug
+
+[Install]
+WantedBy=multi-user.target
